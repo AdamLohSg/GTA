@@ -77,7 +77,7 @@ class AdaGCNConv(MessagePassing):
     def forward(self, x, edge_weight=None):
         # x has shape [N, in_channels]
         # edge_index has shape [2, E]
-        edge_index = self.build_edge_idx(self)
+        edge_index = self.build_edge_idx()
         if self.normalize:
             edge_index, edge_weight = gcn_norm(  # yapf: disable
                 edge_index, edge_weight, x.size(self.node_dim),
