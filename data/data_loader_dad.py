@@ -7,6 +7,8 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
+from utils.timefeatures import time_features
+
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -97,7 +99,7 @@ class Dataset_ETT_hour(Dataset):
 
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
-        
+
 class NASA_Anomaly(Dataset):
     def __init__(self, root_path, flag='train', size=None, 
                  features='M', data_path='SMAP', 
