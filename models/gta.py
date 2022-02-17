@@ -78,9 +78,10 @@ class AdaGCNConv(MessagePassing):
         # x has shape [N, in_channels]
         # edge_index has shape [2, E]
         edge_index = self.build_edge_idx()
+        print(f'x here: {x}')
         if self.normalize:
             edge_index, edge_weight = gcn_norm(  # yapf: disable
-                edge_index, edge_weight, x,
+                edge_index, edge_weight, x.size(self.node_dim),
                 self.improved, self.add_self_loops, dtype=x.dtype)
 
         z = torch.nn.functional.gumbel_softmax(self.logits, hard=True)
