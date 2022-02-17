@@ -80,7 +80,7 @@ class AdaGCNConv(MessagePassing):
         edge_index = self.build_edge_idx()
         if self.normalize:
             edge_index, edge_weight = gcn_norm(  # yapf: disable
-                edge_index, edge_weight, x.size(self.node_dim),
+                edge_index, edge_weight, x,
                 self.improved, self.add_self_loops, dtype=x.dtype)
 
         z = torch.nn.functional.gumbel_softmax(self.logits, hard=True)
